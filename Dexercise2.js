@@ -7,6 +7,35 @@
 
 class BankAccount {
   // YOUR CODE HERE
+  #accountNumber
+  #balance
+
+  constructor(accountNumber, balance) {
+    this.#accountNumber = accountNumber
+    this.#balance = balance
+  }
+
+  deposit(amount) {
+    this.#balance += amount
+  }
+
+  withdraw(amount) {
+    if (amount <= this.#balance) {
+      this.#balance -= amount
+    }
+  }
+
+  getBalance() {
+    return this.#balance
+  }
+
+  getAccountNumber() {
+    return this.#accountNumber
+  }
+
+  static compareAccounts(account1, account2) {
+    return account1.getBalance() >= account2.getBalance() ? account1 : account2
+  }
 }
 
 
@@ -16,5 +45,5 @@ const account2 = new BankAccount(654321, 1000);
 account1.deposit(300); // account1 becomes 800
 account2.withdraw(300); // account2 becomes 700
 const richerAccount = BankAccount.compareAccounts(account1, account2);
-console.log(`Account ${richerAccount.accountNumber} has the higher balance.`);
+console.log(`Account ${richerAccount.getAccountNumber()} has the higher balance.`);
 // Expected output: "Account 123456 has the higher balance."
